@@ -20,7 +20,7 @@ public class Validation {
             );
             valid = true;
         } catch (DateTimeParseException e) {
-        	System.out.println(e.getMessage());
+        	System.out.println("Not valid! " + e.getMessage());
             valid = false;
         }
         return valid;
@@ -42,7 +42,7 @@ public class Validation {
 	      sum+= product;              
 	    }
 	    if (!(sum % 10 == 0)) {
-	    	System.out.println(pnbr + ": Incorrect control number");
+	    	System.out.println("Not valid! " + pnbr + ": Incorrect control number");
 	    	return false;
 	    } else {
 	    	return true;
@@ -64,10 +64,10 @@ public class Validation {
 	//validates personummer for a person born more than 100 years ago
 	//does not check leap years
 	public static void validOldPnbr(String s) {
-		String pnbr = s.replace("+", "");		
+		String pnbr = s.replace("+", "");
 		List<Integer> longMonths = new ArrayList<>();
-		Collections.addAll(longMonths, 1,3,5,7,8,10,12);
 		List<Integer> shortMonths = new ArrayList<>();
+		Collections.addAll(longMonths, 1,3,5,7,8,10,12);
 		Collections.addAll(shortMonths, 4,6,9,11);
 		
 		int year = Integer.parseInt(pnbr.substring(0, 2));
@@ -155,17 +155,16 @@ public class Validation {
 						return;
 					}
 				} else {
-					System.out.println("Wrong length of input.");
+					System.out.println("Not valid! Wrong length of input.");
 					return;
 				}
 				//check validation for personummer/samordningsnummer
 				checkValid(pnbr);
 			} else {
-				System.out.println("Input must be of numbers.");
+				System.out.println("Not valid! Input must be of numbers.");
 			}
 		}
 	}
-	
 	
 	public static void main(String[] args) {
 		//Validation v = new Validation();
@@ -176,7 +175,5 @@ public class Validation {
 			String line = scanner.nextLine().trim();
 			validate(line);
 		}
-
 	}
-
 }
